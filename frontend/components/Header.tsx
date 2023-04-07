@@ -8,7 +8,7 @@ function Header() {
 
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const handleSearch = (e: FormEvent<HTMLFormElement>) => {
+  const handleSearch = async (e: FormEvent<HTMLFormElement>) => {
 
     e.preventDefault();
     
@@ -22,6 +22,13 @@ function Header() {
     try {
       // call your api to actibvate your scrapper 
       //  api/activateScrapper
+      const response = await fetch ('/api/activateScraper', {
+        method:'POST',
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ search: input }),
+      });
     }catch (error) {
       // handle any error...
     }
